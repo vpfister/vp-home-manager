@@ -1,13 +1,32 @@
-{ lib, pkgs, ... }
-{
-	home = {
-		packages = with pkgs; [
-			hello
-		];
+{ lib, pkgs, ... }: let
+    username = "vincent";
+in {
+  home = {
+    packages = with pkgs; [
+      # hello
+      cowsay 
+      lolcat
+    ];
 
-		username = "vincent";
-		homeDirectory = "/home/vincent";
+    inherit username;
+    # username = "vincent";
+    homeDirectory = "/home/${username}";
 
-		stateVersion = "24.11";
+    # add a file: tutorial
+    file = {
+    	"hello.txt" = {
+	    text = ''
+	    	#!/usr/bin/env bash
+
+	    	echo "Hello, ${username}!"
+		echo '*gloups* this is cool stuff'
+	    '';
+	    executable = true;
 	};
+    };
+
+    stateVersion = "24.11";
+  };
+
+  programs.home-manager.enable = true;
 }
