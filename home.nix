@@ -1,5 +1,6 @@
 { lib, pkgs, ... }: let
     username = "vincent";
+    email = "vincent@famille-pfister.net";
 in {
   home = {
     packages = with pkgs; [
@@ -12,21 +13,28 @@ in {
     # username = "vincent";
     homeDirectory = "/home/${username}";
 
-    # add a file: tutorial
-    file = {
-    	"hello.txt" = {
-	    text = ''
-	    	#!/usr/bin/env bash
-
-	    	echo "Hello, ${username}!"
-		echo '*gloups* this is cool stuff'
-	    '';
-	    executable = true;
-	};
+    stateVersion = "24.11";
     };
 
-    stateVersion = "24.11";
-  };
+    programs = {
 
-  programs.home-manager.enable = true;
+        home-manager = {
+            enable = true;
+        }; 
+
+        git = {
+            enable = true;
+            userName = "${username}";
+            userEmail = "${email}";
+            aliases = {
+                co = "checkout";
+                st = "status";
+
+            };
+            extraConfig = {
+                init.defaultBranch = "main";
+                core.editor = "nvim";
+            };
+        };
+    };
 }
