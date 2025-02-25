@@ -43,6 +43,13 @@ in {
                 core.editor = "nvim";
             };
         };
+
+		alacritty = {
+			enable = true;
+			settings = {
+				env.TERM = "xterm-256color";
+			};
+		};
     };
 
     dconf = {
