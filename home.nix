@@ -11,6 +11,9 @@ in {
       # hello
       cowsay 
       lolcat
+
+	  # fonts
+	  (nerdfonts.override { fonts = ["JetBrainsMono" "DroidSansMono" ]; })
     ];
 
     inherit username;

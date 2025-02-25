@@ -9,9 +9,11 @@
 			url = "github:nix-community/home-manager/release-24.11";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+
+		catppuccin.url = "github:catppuccin/nix";
 	};
 
-	outputs = { nixpkgs, home-manager, ... }:
+	outputs = { nixpkgs, home-manager, catppuccin, ... }:
 		let 
 			lib = nixpkgs.lib;
 			system = "x86_64-linux";
@@ -20,7 +22,10 @@
 			homeConfigurations = {
 				vincent = home-manager.lib.homeManagerConfiguration {
 					inherit pkgs;
-					modules = [ ./home.nix ];
+					modules = [ 
+						./home.nix 
+						catppuccin.homeManagerModules.catppuccin
+					];
 				};
 			};
 		};
