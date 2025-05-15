@@ -8,9 +8,19 @@
 in {
   home = {
     packages = with pkgs; [
-      # hello
-      cowsay 
-      lolcat
+      # CLI tools
+      gnumake
+      gnused
+      neovim
+      jq
+
+      # dev tools
+      lazygit
+
+      # monitoring
+      htop
+      btop
+      lm_sensors
 
       # fonts
       (nerdfonts.override { fonts = ["JetBrainsMono" "DroidSansMono" ]; })
@@ -53,7 +63,8 @@ in {
                     y = 10;
                 };
                 window.decorations = "none";
-                scrolling.history = 1000;
+		window.opacity = 0.9;
+                scrolling.history = 10000;
                 font = {
                     normal = {
                         family = "JetBrains Mono Nerd Font";
@@ -67,7 +78,7 @@ in {
                         family = "JetBrains Mono Nerd Font";
                         style = "Italic";
                     };
-                    size = 12;
+                    size = 10;
                 };
             };
         };
