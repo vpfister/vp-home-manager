@@ -1,4 +1,5 @@
-{ lib, pkgs, ... }: let
+{ lib, pkgs, catppuccin, ... }: 
+let
     username = "vincent";
     email = "vincent@famille-pfister.net";
     wallpaperImg = pkgs.fetchurl {
@@ -27,7 +28,6 @@ in {
     ];
 
     inherit username;
-    # username = "vincent";
     homeDirectory = "/home/${username}";
 
     stateVersion = "24.11";
@@ -38,6 +38,10 @@ in {
         home-manager = {
             enable = true;
         }; 
+
+        bash = {
+	    enable = true;
+	};
 
         git = {
             enable = true;
@@ -82,6 +86,31 @@ in {
                 };
             };
         };
+
+	vscode = {
+            enable = true;
+            package = pkgs.vscodium;
+        };
+
+	chromium = {
+	    enable = true;
+	};
+
+	starship = {
+	    enable = true;
+	    settings = {
+	        add_newline = false;
+		scan_timeout = 1;
+	    };
+	    enableBashIntegration = true;
+
+	};
+    };
+
+    catppuccin = {
+        flavor = "mocha";
+        alacritty.enable = true;
+	btop.enable = true;
     };
 
     dconf = {
@@ -100,4 +129,5 @@ in {
             };
         };
     };
+
 }
